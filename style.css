@@ -1,3 +1,79 @@
 #root {
-  color: red;
+  font-family:'Times New Roman', Times, serif;
+}
+body {
+}
+
+header {
+  background-color:white;
+  
+}
+header,h1{
+  text-align: center;
+  padding: 20px;
+}
+
+#allEpisode{
+  background-color: black;
+  display: flex;
+  flex-wrap:wrap;
+  gap: 20px;
+  padding: 3%;
+  border-radius: 10px;
+  
+}
+
+
+.split {
+  background-color:white;
+  padding: 0.5em;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  
+  
+}
+
+.split h3 {
+  
+  padding: 0.5em;
+  border-radius:10px ;
+  border : solid rgb(139, 113, 10) 1px ;
+  
+
+  
+}
+
+.split img{
+  height: 200px;
+  border-radius: 10px;
+  background-size: cover;
+}
+
+.split p {
+  line-height:1cm;
+  padding: 0.5em;
+  text-align: justify;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+footer a {
+  text-decoration: none;
+  color:black;
+  background-color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+footer a:hover{
+  color:white;
+  background-color: black;
 }
