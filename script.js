@@ -14,14 +14,54 @@ window.onload = setup;
 
 let rooot = document.getElementById("root")  ;
 
-//=========================================header
+//=============================================================header
 let pageHeader = document.createElement("header");
   let headerText = document.createElement("h1");
     headerText.innerText = "Game of Thrones TV Series 2011–2019";
+    //========================================== Nav
+let navBar = document.createElement("nav")
+let ulList = document.createElement("ul");
 
-    pageHeader.appendChild(headerText);
-    rooot.appendChild(pageHeader);
+ let navArray = ["Home", "New", "Watchlist", "About"]
+
+ navArray.forEach(item=>{
+  let li = document.createElement("li");
+  li.innerText= item ;
+   ulList.appendChild(li)
+   navBar.appendChild(ulList)
+
+ }
+
+)
+//============================================ SearchBar
+let searchDiv = document.createElement("div")
+searchDiv.className = "search-div"
+let form = document.createElement("form")
+
+let search = document.createElement("input");
+search.type = "text" ;
+search.id = "mysearch"
+search.placeholder = "Search it out ... " ;
+
+// search button
+let submitBut = document.createElement("button") ;
+submitBut.type = "submit"
+submitBut.classList.add("search-btn");
+console.log(submitBut)
+
+
+
+form.appendChild(search);
+form.appendChild(submitBut);
+searchDiv.appendChild(form) ;
+
+console.log(searchDiv)
 //==============================================
+pageHeader.appendChild(searchDiv);
+pageHeader.appendChild(headerText);
+pageHeader.appendChild(navBar)
+rooot.appendChild(pageHeader);
+//============================================== function
 
 
 function makePageForEpisodes (episodeList){
