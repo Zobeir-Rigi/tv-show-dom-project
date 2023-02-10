@@ -3,6 +3,7 @@ function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
   searchh () ;
+  DropDown() ;
 }
 
 
@@ -19,6 +20,10 @@ let ulList = document.createElement("ul");
  navArray.forEach(item=>{
   let li = document.createElement("li");
   li.innerText= item ;
+
+  // let link = document.createElement("a")
+  // link.innerText ="#"
+
    ulList.appendChild(li)
    navBar.appendChild(ulList)
 
@@ -37,9 +42,36 @@ search.value = "" ;
 let submitBut = document.createElement("button") ;
 submitBut.type = "submit"
 submitBut.classList.add("search-btn");
+//============================================================ DropDown
+let drowpdown = document.createElement("select")
+const allEpisodes = getAllEpisodes();
+allEpisodes.forEach(episode =>{
+  let option = document.createElement("option") ;
+  option.value = episode.id ;
+  option.innerText = `S${String(episode.season).padStart(2,0)}E${String(episode.number).padStart(2,0)} * ${episode.name}` ;
+  drowpdown.appendChild(option)
+})
+form.appendChild(drowpdown);
+// When the user makes a selection, they should be taken directly to that episode in the list
+function DropDown(){
+    drowpdown.addEventListener("change" , (e) =>{
+const idSelectByUser = Number(e.target.value) ;
+console.log(typeof idSelectByUser) ; 
+// so we should convert the top line  to Number 
+console.log({idSelectByUser});
+const selectEpisode = getAllEpisodes().find(episode =>
+  episode.id === idSelectByUser)
+  console.log(selectEpisode)
+  if(selectEpisode){
+     makePageForEpisodes([selectEpisode]);
+
+  }
+})
+}
+
 //============================================ Appending
 form.appendChild(search);
-form.appendChild(submitBut);
+// form.appendChild(submitBut);
 searchDiv.appendChild(form) ;
 //============================================== Appending the Header Sections =============================== 
 pageHeader.appendChild(searchDiv);
@@ -70,7 +102,7 @@ function makePageForEpisodes(episodeList) {
       episodeBox.appendChild(mediumImage);
 
     let summaryText = document.createElement("p");
-      summaryText.textContent = obj.summary
+      summaryText.innerHTML = obj.summary
       episodeBox.appendChild(summaryText)
 
     pageEpisodes.appendChild(episodeBox)
@@ -85,21 +117,14 @@ function searchh (){
   const searchString = e.target.value.toLowerCase();
   const filteredEpisodes = getAllEpisodes().filter((episode) => {
     // localeCompare might be neater here
-    // let x =
-     return episode.summary.toLowerCase().includes(searchString) || episode.name.toLowerCase().includes(searchString) ;
-    // if (x){
-    //         return x ;
-    // }else {
-    //         return "we could not find anything"
-    // }
     
+     return episode.summary.toLowerCase().includes(searchString) || episode.name.toLowerCase().includes(searchString) ;
   });
   makePageForEpisodes(filteredEpisodes);
 });
 
 }
 
-window.onload = setup;
  // ===========================================================================> Footer
 
     let footer = document.createElement("footer") ;
@@ -110,3 +135,4 @@ window.onload = setup;
       footer.appendChild(link)
       rooot.appendChild(footer)
       
+window.onload = setup;

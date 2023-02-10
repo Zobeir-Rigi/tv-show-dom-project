@@ -56,30 +56,12 @@ header,h1{
   text-align: justify;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  height: 50px;
-  background-color: black;
-  color: white;
-  border: 1px solid white;
-  border-radius: 5px;
-}
 
-footer a {
-  text-decoration: none;
-  color:black;
-  background-color: white;
-  padding: 5px;
-  border-radius: 3px;
-}
-footer a:hover{
-  color:white;
-  background-color: black;
-}
 
 .search-div{
   height: 32px;
+  display: flex;
+  justify-content: right;
 }
 form{
   height: 32px;
@@ -98,6 +80,15 @@ button {
   width: 24px;
   background-size: cover;
 }
+input{
+    border-radius: 10px;
+}
+
+
+nav {
+  display: flex;
+  align-items:left;
+}
 
 ul{
   list-style: none;
@@ -107,4 +98,27 @@ ul{
 li {
   display: inline;
   margin-right: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+footer a {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+footer a:hover {
+  color: white;
+  background-color: black;
 }
