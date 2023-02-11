@@ -1,10 +1,18 @@
-//You can edit ALL of the code here
+const url = "https://api.tvmaze.com/shows/82/episodes" ;
+let dataFromJson = [] ;
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+  fetch(url)
+  .then(res => res.json())
+  .then(data => {
+  console.log(data)
+  dataFromJson = data ;
+  makePageForEpisodes(dataFromJson);
+  
+  })
   searchh () ;
-  DropDown() ;
-}
+  DropDown() ; 
+} 
 
 
 
@@ -44,7 +52,7 @@ submitBut.type = "submit"
 submitBut.classList.add("search-btn");
 //============================================================ DropDown
 let drowpdown = document.createElement("select")
-const allEpisodes = getAllEpisodes();
+const allEpisodes = dataFromJson;
 allEpisodes.forEach(episode =>{
   let option = document.createElement("option") ;
   option.value = episode.id ;
@@ -59,7 +67,7 @@ const idSelectByUser = Number(e.target.value) ;
 console.log(typeof idSelectByUser) ; 
 // so we should convert the top line  to Number 
 console.log({idSelectByUser});
-const selectEpisode = getAllEpisodes().find(episode =>
+const selectEpisode = dataFromJson.find(episode =>
   episode.id === idSelectByUser)
   console.log(selectEpisode)
   if(selectEpisode){
@@ -113,9 +121,10 @@ function makePageForEpisodes(episodeList) {
 //=============================================================Search Event 
 function searchh (){
   search.addEventListener("input", (e) => {
+    e.preventDefault()
   // allEpisodes.innerHTML="";
   const searchString = e.target.value.toLowerCase();
-  const filteredEpisodes = getAllEpisodes().filter((episode) => {
+  const filteredEpisodes = dataFromJson.filter((episode) => {
     // localeCompare might be neater here
     
      return episode.summary.toLowerCase().includes(searchString) || episode.name.toLowerCase().includes(searchString) ;
