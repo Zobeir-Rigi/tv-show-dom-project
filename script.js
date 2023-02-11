@@ -5,10 +5,11 @@ function setup() {
   fetch(url)
   .then(res => res.json())
   .then(data => {
-  console.log(data)
-  dataFromJson = data ;
+     console.log(data)
+       dataFromJson = data ;
   makePageForEpisodes(dataFromJson);
-  
+
+
   })
   searchh () ;
   DropDown() ; 
@@ -50,32 +51,8 @@ search.value = "" ;
 let submitBut = document.createElement("button") ;
 submitBut.type = "submit"
 submitBut.classList.add("search-btn");
-//============================================================ DropDown
-let drowpdown = document.createElement("select")
-const allEpisodes = dataFromJson;
-allEpisodes.forEach(episode =>{
-  let option = document.createElement("option") ;
-  option.value = episode.id ;
-  option.innerText = `S${String(episode.season).padStart(2,0)}E${String(episode.number).padStart(2,0)} * ${episode.name}` ;
-  drowpdown.appendChild(option)
-})
-form.appendChild(drowpdown);
-// When the user makes a selection, they should be taken directly to that episode in the list
-function DropDown(){
-    drowpdown.addEventListener("change" , (e) =>{
-const idSelectByUser = Number(e.target.value) ;
-console.log(typeof idSelectByUser) ; 
-// so we should convert the top line  to Number 
-console.log({idSelectByUser});
-const selectEpisode = dataFromJson.find(episode =>
-  episode.id === idSelectByUser)
-  console.log(selectEpisode)
-  if(selectEpisode){
-     makePageForEpisodes([selectEpisode]);
+//==========================
 
-  }
-})
-}
 
 //============================================ Appending
 form.appendChild(search);
@@ -86,10 +63,12 @@ pageHeader.appendChild(searchDiv);
 pageHeader.appendChild(headerText);//h1
 pageHeader.appendChild(navBar)
 rooot.appendChild(pageHeader);
+
+  let drowpdown = document.createElement("select")
 //==================================================== function
 function makePageForEpisodes(episodeList) {
   // clear out the rootElement's HTML before we add the new stuff
-  
+
   let pageEpisodes = document.getElementById("allEpisode");
   pageEpisodes.innerHTML=" "
   // if (episodeList.length === 0){
@@ -111,7 +90,16 @@ function makePageForEpisodes(episodeList) {
 
     let summaryText = document.createElement("p");
       summaryText.innerHTML = obj.summary
-      episodeBox.appendChild(summaryText)
+      episodeBox.appendChild(summaryText);
+
+      let option = document.createElement("option") ;
+      console.log(option)
+      option.value = obj.id ;
+  option.innerText = `S${String(obj.season).padStart(2,0)}E${String(obj.number).padStart(2,0)} * ${obj.name}` ;
+  drowpdown.appendChild(option);
+  form.appendChild(drowpdown);
+
+
 
     pageEpisodes.appendChild(episodeBox)
     rooot.appendChild(pageEpisodes)
@@ -132,6 +120,24 @@ function searchh (){
   makePageForEpisodes(filteredEpisodes);
 });
 
+}
+//=========================================DropDown
+// When the user makes a selection, they should be taken directly to that episode in the list
+
+function DropDown(){
+    drowpdown.addEventListener("change" , (e) =>{
+const idSelectByUser = Number(e.target.value) ;
+console.log(typeof idSelectByUser) ; 
+// so we should convert the top line  to Number 
+console.log({idSelectByUser});
+const selectEpisode = dataFromJson.find(episode =>
+  episode.id === idSelectByUser)
+  console.log(selectEpisode)
+  if(selectEpisode){
+     makePageForEpisodes([selectEpisode]);
+
+  }
+})
 }
 
  // ===========================================================================> Footer
