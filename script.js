@@ -5,23 +5,20 @@ function setup() {
   fetch(url)
   .then(res => res.json())
   .then(data => {
-     console.log(data)
-       dataFromJson = data ;
+   console.log(data)
+   dataFromJson = data ;
   makePageForEpisodes(dataFromJson);
-
-
   })
   searchh () ;
   DropDown() ; 
 } 
 
 
-
 let rooot = document.getElementById("root");
 //================================================================================================= Header
 let pageHeader = document.createElement("header");
   let headerText = document.createElement("h1");
-    headerText.innerText = "Game of Thrones TV Series 2011–2019";
+    headerText.innerText = "";
     //========================================== Nav
 let navBar = document.createElement("nav")
 let ulList = document.createElement("ul");
@@ -55,9 +52,6 @@ submitBut.classList.add("search-btn");
 
 
 //============================================ Appending
-form.appendChild(search);
-// form.appendChild(submitBut);
-searchDiv.appendChild(form) ;
 //============================================== Appending the Header Sections =============================== 
 pageHeader.appendChild(searchDiv);
 pageHeader.appendChild(headerText);//h1
@@ -98,6 +92,10 @@ function makePageForEpisodes(episodeList) {
   option.innerText = `S${String(obj.season).padStart(2,0)}E${String(obj.number).padStart(2,0)} * ${obj.name}` ;
   drowpdown.appendChild(option);
   form.appendChild(drowpdown);
+  form.appendChild(search);
+// form.appendChild(submitBut);
+searchDiv.appendChild(form) ;
+
 
 
 
