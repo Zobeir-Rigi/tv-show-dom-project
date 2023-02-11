@@ -141,11 +141,12 @@ const selectEpisode = dataFromJson.find(episode =>
  // ===========================================================================> Footer
 
     let footer = document.createElement("footer") ;
+    let footer2 = document.getElementById("footer")
     let link = document.createElement("a") ;
     link.innerText = "source"
     footer.innerText = `created By @Zobeir : taken by this ${link}`;
       link.href = "https://www.tvmaze.com/";
       footer.appendChild(link)
-      rooot.appendChild(footer)
+      footer2.appendChild(footer)
       
 window.onload = setup;
